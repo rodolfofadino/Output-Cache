@@ -36,7 +36,7 @@ namespace DemoCache.Cache
 
         private void InicializaMemcached()
         {
-            sstring[] servers = { "127.0.0.1:11211" };
+            string[] servers = { "127.0.0.1:11211" };
             SockIOPool pool = SockIOPool.GetInstance();
             pool.SetServers(servers);
             pool.Initialize();
