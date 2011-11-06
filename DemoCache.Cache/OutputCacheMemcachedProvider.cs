@@ -5,6 +5,7 @@ using System.Text;
 using System.Web.Caching;
 using Memcached.ClientLibrary;
 using System.Diagnostics;
+using System.Configuration;
 
 namespace DemoCache.Cache
 {
@@ -36,7 +37,7 @@ namespace DemoCache.Cache
 
         private void InicializaMemcached()
         {
-            string[] servers = { "127.0.0.1:11211" };
+            string[] servers = ConfigurationManager.AppSettings["memcachedServer"].Split(';');
             SockIOPool pool = SockIOPool.GetInstance();
             pool.SetServers(servers);
             pool.Initialize();
