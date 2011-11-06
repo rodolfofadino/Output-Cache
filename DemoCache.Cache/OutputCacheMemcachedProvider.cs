@@ -10,6 +10,7 @@ namespace DemoCache.Cache
 {
     public class OutputCacheMemcachedProvider : OutputCacheProvider
     {
+        //Teste
         public override object Add(string key, object entry, DateTime utcExpiry)
         {
             utcExpiry = TimeZoneInfo.ConvertTimeFromUtc(utcExpiry, TimeZoneInfo.Local);
