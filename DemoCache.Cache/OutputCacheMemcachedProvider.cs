@@ -16,14 +16,11 @@ namespace DemoCache.Cache
             var agora = DateTime.Now;
             Debug.WriteLine("Add"+key + " __ " + utcExpiry.Subtract(agora).TotalSeconds.ToString());
 
-            string[] servers = { "127.0.0.1:11211" };
-            SockIOPool pool = SockIOPool.GetInstance();
-            pool.SetServers(servers);
-            pool.Initialize();
+            InicializaMemcached();
 
             MemcachedClient cache = new MemcachedClient();
 
-            string chave = MD5(key);s
+            string chave = MD5(key);
 
             if (cache.KeyExists(chave))
             {
@@ -37,6 +34,14 @@ namespace DemoCache.Cache
 
         }
 
+        private void InicializaMemcached()
+        {
+            sstring[] servers = { "127.0.0.1:11211" };
+            SockIOPool pool = SockIOPool.GetInstance();
+            pool.SetServers(servers);
+            pool.Initialize();
+        }
+
         private string MD5(string key)
         {
             return key;
@@ -44,12 +49,9 @@ namespace DemoCache.Cache
 
         public override object Get(string key)
         {
-            Debug.WriteLine("Get "+key);
+            Debug.WriteLine("Get " + key);
 
-            string[] servers = { "127.0.0.1:11211" };
-            SockIOPool pool = SockIOPool.GetInstance();
-            pool.SetServers(servers);
-            pool.Initialize();
+            InicializaMemcached();
 
             MemcachedClient cache = new MemcachedClient();
 
@@ -67,10 +69,7 @@ namespace DemoCache.Cache
 
         public override void Remove(string key)
         {
-            string[] servers = { "127.0.0.1:11211" };
-            SockIOPool pool = SockIOPool.GetInstance();
-            pool.SetServers(servers);
-            pool.Initialize();
+            InicializaMemcached();
 
             MemcachedClient cache = new MemcachedClient();
 
@@ -85,11 +84,8 @@ namespace DemoCache.Cache
         {
             utcExpiry = TimeZoneInfo.ConvertTimeFromUtc(utcExpiry, TimeZoneInfo.Local);
             var agora = DateTime.Now;
-            Debug.WriteLine("Set"+key + " __ " + utcExpiry.Subtract(agora).TotalSeconds.ToString());
-            string[] servers = { "127.0.0.1:11211" };
-            SockIOPool pool = SockIOPool.GetInstance();
-            pool.SetServers(servers);
-            pool.Initialize();
+            Debug.WriteLine("Set" + key + " __ " + utcExpiry.Subtract(agora).TotalSeconds.ToString());
+            InicializaMemcached();
 
             MemcachedClient cache = new MemcachedClient();
 
