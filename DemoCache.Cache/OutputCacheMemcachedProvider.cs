@@ -10,7 +10,6 @@ namespace DemoCache.Cache
 {
     public class OutputCacheMemcachedProvider : OutputCacheProvider
     {
-        //Teste
         public override object Add(string key, object entry, DateTime utcExpiry)
         {
             utcExpiry = TimeZoneInfo.ConvertTimeFromUtc(utcExpiry, TimeZoneInfo.Local);
@@ -24,7 +23,7 @@ namespace DemoCache.Cache
 
             MemcachedClient cache = new MemcachedClient();
 
-            string chave = MD5(key);
+            string chave = MD5(key);s
 
             if (cache.KeyExists(chave))
             {
