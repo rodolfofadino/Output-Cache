@@ -5,7 +5,7 @@ using System.Text;
 using System.Web.Caching;
 using Memcached.ClientLibrary;
 using System.Diagnostics;
-using System.Configuration;
+using System.Configuration
 
 namespace DemoCache.Cache
 {
